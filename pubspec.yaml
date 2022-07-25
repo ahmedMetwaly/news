@@ -1,0 +1,70 @@
+name: news_app
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.3 <3.0.0"
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+  flutter_bloc: ^8.0.1
+  dio: ^4.0.6
+  flutter_conditional_rendering: ^2.0.0
+  bloc: ^8.0.3
+  webview_flutter: ^3.0.4
+  intl: ^0.17.0
+  sqflite:
+  flutter_password_strength: ^0.1.6
+  shared_preferences: ^2.0.15
+  share_plus: ^4.0.10
+  firebase_auth: ^3.5.0
+  firebase_core: ^1.20.0
+  image_picker: ^0.8.5+3
+  bottom_sheet: ^3.1.1
+  firebase_storage: ^10.3.3
+  internet_connection_checker: ^0.0.1+4
+  cloud_firestore: ^3.4.0
+
+
+
+
+
+
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+
+flutter:
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
