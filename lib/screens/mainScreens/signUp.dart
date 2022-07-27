@@ -46,7 +46,7 @@ class _BodyState extends State<Body> {
   File? imageFile;
   ScrollController? scrollController;
 
-  void _saveForm() async{
+  void _saveForm() async {
     setState(() {
       _isValid = _form.currentState!.validate();
     });
@@ -238,21 +238,7 @@ class _BodyState extends State<Body> {
                 ),
               ),
             ),
-            const Text(
-              "Or sign up with",
-              style: TextStyle(fontSize: 15),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                SignInOrUpWith(
-                  imagePath: "assets/images/google.png",
-                ),
-                SignInOrUpWith(
-                  imagePath: "assets/images/Facebook_Logo.png",
-                ),
-              ],
-            ),
+
           ],
         ),
       ),

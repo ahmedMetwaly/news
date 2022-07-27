@@ -41,3 +41,5 @@ class DeleteAllData extends AppStates {}
 class ShareURL extends AppStates {}
 
 class ChangeAppTheme extends AppStates {}
+
+class ChangeUserData extends AppStates {}

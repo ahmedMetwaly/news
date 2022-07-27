@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/screens/buttomNavBar/business.dart';
@@ -347,5 +348,16 @@ class AppCubit extends Cubit<AppStates> {
         getData(favNews);
       },
     );
+  }
+
+  // change user data
+  String userImageProfileUrl = "https://firebasestorage.googleapis.com/v0/b/newsapp-1e98c.appspot.com/o/profilePic.png?alt=media&token=3df3443d-9dec-4110-8347-82e9ad994d90";
+  String userName = "Visitor";
+  Future userData(User? user) async{
+    if(user!=null){
+      userName = user.displayName!;
+      userImageProfileUrl = user.photoURL!;
+      emit(ChangeUserData(),);
+    }
   }
 }

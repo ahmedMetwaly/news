@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../model/cubit/appcCubit.dart';
@@ -6,7 +7,9 @@ import 'package:news_app/widgets/lineSeperator.dart';
 import 'favPage.dart';
 
 class UserSettings extends StatelessWidget {
-  const UserSettings({Key? key}) : super(key: key);
+  const UserSettings({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +29,20 @@ class UserSettings extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            "Hello, Ahmed Mohamed",
+                            "Hello, ${cubit.userName}",
                             style: Theme.of(context).textTheme.headline4,
                           ),
                         ),
                         const SizedBox(
                           height: 15,
                         ),
-                        const Expanded(
+                        Expanded(
                           flex: 4,
-                          child: CircleAvatar(
-                            foregroundImage: AssetImage("assets/images/me.jpg"),
-                            radius: 100,
+                          child: ClipOval(
+                            child: Image.network(
+                              cubit.userImageProfileUrl,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         Expanded(

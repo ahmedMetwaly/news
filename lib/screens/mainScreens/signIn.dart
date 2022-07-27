@@ -31,9 +31,13 @@ class _SignInState extends State<SignIn> {
             password: _passwordController.value.text,
           );
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Signed In Successfully"),
-              duration: Duration(seconds: 3),
+            SnackBar(
+              content: const Text(
+                "Signed In Successfully",
+                style: TextStyle(color: Colors.white),
+              ),
+              duration: const Duration(seconds: 3),
+              backgroundColor: Theme.of(context).appBarTheme.iconTheme?.color,
             ),
           );
           Navigator.of(context).pushReplacement(
@@ -55,7 +59,8 @@ class _SignInState extends State<SignIn> {
                   child: Text(
                     "ok",
                     style: TextStyle(
-                        color: Theme.of(context).appBarTheme.iconTheme?.color),
+                      color: Theme.of(context).appBarTheme.iconTheme?.color,
+                    ),
                   ),
                 ),
               ],
@@ -69,116 +74,153 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Center(
-                child: CircleAvatar(
-                  foregroundImage:
-                      AssetImage("assets/images/nbc-social-default.png"),
-                  radius: 55,
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: ClipOval(
+                child: Image.network(
+                  'https://firebasesorage.googleapis.com/v0/b/newsapp-1e98c.appspot.com/o/nbc-social-default.png?alt=media&token=cf8625bf-e5fa-41db-bb7b-282cb1777365',
+                  fit: BoxFit.cover,
+                  width: 120,
+                  height: 120,
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) {
+                      return child;
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                        color: Theme.of(context).appBarTheme.iconTheme?.color,
+                      ),
+                    );
+                  },
+                  errorBuilder: (BuildContext context, Object exception,
+                      StackTrace? stackTrace) {
+                    return Image.asset(
+                      "assets/images/nbc-social-default.png",
+                      fit: BoxFit.cover,
+                      width: 120,
+                      height: 120,
+                    );
+                  },
                 ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
-              Text(
-                "Sign In",
-                style: Theme.of(context).textTheme.headline4,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Form(
-                key: _form,
-                child: Column(
-                  children: [
-                    Email(controller: _emailController),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    PasswordWidget(
-                      isObscure: true,
-                      formKey: _form,
-                      label: "Password",
-                      passwordContorller: _passwordController,
-                      withPasswordIndicator: false,
-                      insideSignInPage: true,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextButton(
-                      onPressed: _saveForm,
-                      child: Container(
-                        alignment: Alignment.center,
-                        width: double.maxFinite,
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).appBarTheme.iconTheme?.color,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          "Sign in",
-                          style: TextStyle(
-                            color: Theme.of(context).scaffoldBackgroundColor,
-                            fontSize: 25,
-                          ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Text(
+              "Sign In",
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Form(
+              key: _form,
+              child: Column(
+                children: [
+                  Email(controller: _emailController),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  PasswordWidget(
+                    isObscure: true,
+                    formKey: _form,
+                    label: "Password",
+                    passwordContorller: _passwordController,
+                    withPasswordIndicator: false,
+                    insideSignInPage: true,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  TextButton(
+                    onPressed: _saveForm,
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: double.maxFinite,
+                      padding: const EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).appBarTheme.iconTheme?.color,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        "Sign in",
+                        style: TextStyle(
+                          color: Theme.of(context).scaffoldBackgroundColor,
+                          fontSize: 25,
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      "Or sign in with",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        SignInOrUpWith(
-                          imagePath: "assets/images/google.png",
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
+                    "Or sign in with",
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  const SignInOrUpWith(
+                    imagePath: "assets/images/google.png",
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        "Don't have an account ?",
+                        style: TextStyle(
+                          fontSize: 16,
                         ),
-                        SignInOrUpWith(
-                          imagePath: "assets/images/Facebook_Logo.png",
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Text(
-                          "Don't have an account ?",
+                      ),
+                      const Spacer(),
+                      TextButton(
+                        onPressed: () {
+                          AppCubit.navTo(context, const SignUp());
+                        },
+                        child: Text(
+                          "Create account",
                           style: TextStyle(
-                            fontSize: 16,
+                            color:
+                                Theme.of(context).appBarTheme.iconTheme?.color,
+                            fontSize: 17,
                           ),
                         ),
-                        const Spacer(),
-                        TextButton(
-                          onPressed: () {
-                            AppCubit.navTo(context, const SignUp());
-                          },
-                          child: Text(
-                            "Create account",
-                            style: TextStyle(
-                              color: Theme.of(context)
-                                  .appBarTheme
-                                  .iconTheme
-                                  ?.color,
-                              fontSize: 17,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ));
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
+
+// import 'package:flutter/material.dart';
+// import "../../model/writeReadDataFormFireBase.dart";
+//
+// class SignIn extends StatelessWidget {
+//   const SignIn({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: TextButton(
+//           onPressed: ()async{ await signInWithGoogle();},
+//           child: Text("Sign In"),
+//         ),
+//       ),
+//     );
+//   }
+// }

@@ -23,13 +23,18 @@ dependencies:
   flutter_password_strength: ^0.1.6
   shared_preferences: ^2.0.15
   share_plus: ^4.0.10
-  firebase_auth: ^3.5.0
-  firebase_core: ^1.20.0
   image_picker: ^0.8.5+3
   bottom_sheet: ^3.1.1
-  firebase_storage: ^10.3.3
   internet_connection_checker: ^0.0.1+4
+  http: ^0.13.4
+
+  #firebase
+  google_sign_in: ^5.4.0
+  firebase_storage: ^10.3.3
   cloud_firestore: ^3.4.0
+  firebase_auth: ^3.5.0
+  firebase_core: ^1.20.0
+
 
 
 
